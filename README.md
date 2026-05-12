@@ -1,53 +1,111 @@
-# React + TypeScript + Vite
+# Receipt Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application for tracking and managing receipts built with React, TypeScript, and Vite. This app allows you to store, organize, and export your receipts with ease.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
+- 💾 **Local Storage**: Uses IndexedDB for persistent data storage (via Dexie)
+- 📊 **Statistics**: View spending statistics and trends
+- 📤 **Export to Excel**: Export your receipts to Excel format
+- 🎨 **Modern UI**: Built with Tailwind CSS and Lucide React icons
+- ⚡ **Fast**: Powered by Vite for lightning-fast development and builds
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Database**: IndexedDB (via Dexie)
+- **Icons**: Lucide React
+- **Export**: ExcelJS, File Saver
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (version 18 or higher)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ilhandag1/receipt-tracker.git
+   cd receipt-tracker
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build for Production
+
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Preview Production Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
+```bash
+npm run preview
+```
+
+## Usage
+
+- **Add Receipt**: Click the "Add Receipt" button to create a new receipt entry
+- **Edit Receipt**: Click on any receipt item to edit its details
+- **Delete Receipt**: Use the delete button on receipt items
+- **View Statistics**: Check the stats section for spending insights
+- **Export Data**: Use the export button to download receipts as Excel file
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── receipt/
+│   │   ├── ReceiptForm.tsx     # Form for adding/editing receipts
+│   │   ├── ReceiptItem.tsx     # Individual receipt display
+│   │   ├── ReceiptList.tsx     # List of all receipts
+│   │   └── ReceiptStats.tsx    # Statistics component
+│   └── ui/                     # UI components
+├── db/
+│   └── db.ts                   # IndexedDB setup with Dexie
+├── hooks/                      # Custom React hooks
+├── pages/
+│   ├── HomePage.tsx            # Main page
+│   └── EditPage.tsx            # Edit receipt page
+├── store/
+│   └── receiptStore.ts         # Zustand state management
+├── types/
+│   └── receipt.ts              # TypeScript type definitions
+└── utils/
+    ├── exportXlsx.ts           # Excel export functionality
+    ├── formatCurrency.ts       # Currency formatting
+    └── sortReceipts.ts         # Receipt sorting utilities
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is private and proprietary.
 import reactDom from 'eslint-plugin-react-dom'
 
 export default defineConfig([
